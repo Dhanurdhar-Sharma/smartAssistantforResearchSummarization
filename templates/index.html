@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ASK Assistant</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/57f27d3c4e.js" crossorigin="anonymous"></script>
+</head>
+
+<body class="h-[100vh] w-[100vw] bg-white relative overflow-x-hidden overflow-y-auto flex">
+
+    <!-- Left Sidebar -->
+    <div id="left-side" class="h-full w-0 hidden border-r border-black transition-all duration-300 ease-in-out">
+        <div class="h-[50px] w-full pl-[15px] text-[24px] text-black bold flex items-center">
+            Your Documents
+        </div>
+        <div id="uploaded-list" class="p-4 text-sm overflow-y-auto max-h-[calc(100vh-60px)]">
+            <ul id="file-list" class="space-y-4 flex flex-col"></ul>
+        </div>
+    </div>
+
+    <!-- Login/Signup Modal -->
+    <div id="loginPage" class="h-[100%] w-[100%] backdrop-blur-sm absolute z-50 flex justify-center items-center">
+        <!-- Sign In -->
+        <div id="loginBox"
+            class="h-auto relative w-[450px] bg-white border-[2px] border-black rounded-[10px] shadow-2xl">
+            <div id="crossarea" class="h-[40px] w-[100%] relative">
+                <div id="ci1"
+                    class="h-[30px] w-[30px] absolute right-[5px] hover:bg-gray-200 cursor-pointer top-[5px] bg-gray-100 rounded-full flex justify-center items-center">
+                    <i class="fa-solid fa-xmark text-[20px]" style="color: #000000;"></i>
+                </div>
+            </div>
+            <div id="headding" class="h-[40px] w-[100%] text-[30px] flex justify-center items-center">
+                Sign In
+            </div>
+            <form action="#" id="signin"
+                class="h-[200px] w-[100%] mt-[10px] flex flex-col justify-center items-center">
+                <input type="text" name="userName" id="userName" placeholder="Enter User Name"
+                    class="h-[40px] border-[2px] border-black w-[80%] rounded-[10px] px-[5px] focus:outline-none"><br>
+                <input type="password" name="pass" id="signinPass" placeholder="Enter your password"
+                    class="h-[40px] border-[2px] border-black w-[80%] rounded-[10px] px-[5px] focus:outline-none"><br>
+                <button id="signInSubmit"
+                    class="h-[40px] bg-black text-white text-[16px] w-auto mx-[10px] flex items-center rounded-[10px] px-[15px] focus:outline-none">
+                    Sign In
+                </button>
+            </form>
+            <pre class="h-auto w-[100%] mb-[15px] flex justify-center select-none">
+                <p>Don't have an account.</p> 
+                <span id="su" class="text-[blue] cursor-pointer"> Sign Up</span>
+            </pre>
+        </div>
+
+        <!-- Sign Up -->
+        <div id="signupBox"
+            class="h-auto relative w-[450px] hidden bg-white border-[2px] border-black rounded-[10px] shadow-2xl">
+            <div id="crossarea" class="h-[40px] w-[100%] relative">
+                <div id="ci2"
+                    class="h-[30px] w-[30px] absolute right-[5px] hover:bg-gray-200 cursor-pointer top-[5px] bg-gray-100 rounded-full flex justify-center items-center">
+                    <i class="fa-solid fa-xmark text-[20px]" style="color: #000000;"></i>
+                </div>
+            </div>
+            <div id="headding" class="h-[40px] w-[100%] text-[30px] flex justify-center items-center">
+                Sign Up
+            </div>
+            <form action="/signup_req" id="signup" method="post" enctype="multipart/form-data"
+                class="h-[300px] w-[100%] mt-[10px] flex flex-col justify-center items-center">
+                <div id="radio-boxx" class="h-[80px] w-full flex justify-around items-center mb-[10px] px-[20px]">
+                    <input type="radio" id="pp1" name="pp" value="pp1" checked required>
+                    <label for="pp1" class="h-[70px] w-[70px] rounded-full flex justify-center items-center cursor-pointer bg-gray-300">
+                        <img src="{{ url_for('static', filename='profile.jpeg') }}" alt="pp1" class="h-[95%] w-[95%] rounded-full">
+                    </label>
+
+                    <input type="radio" id="pp2" name="pp" value="pp2">
+                    <label for="pp2" class="h-[70px] w-[70px] rounded-full flex justify-center items-center cursor-pointer bg-gray-300">
+                        <img src="{{ url_for('static', filename='profile2.png') }}" alt="pp2" class="h-[95%] w-[95%] rounded-full">
+                    </label>
+
+                    <input type="radio" id="pp3" name="pp" value="pp3">
+                    <label for="pp3" class="h-[70px] w-[70px] rounded-full flex justify-center items-center cursor-pointer bg-gray-300">
+                        <img src="{{ url_for('static', filename='profile3.png') }}" alt="pp3" class="h-[95%] w-[95%] rounded-full">
+                    </label>
+
+                    <input type="radio" id="pp4" name="pp" value="pp4">
+                    <label for="pp4" class="h-[70px] w-[70px] rounded-full flex justify-center items-center cursor-pointer bg-gray-300">
+                        <img src="{{ url_for('static', filename='profile4.png') }}" alt="pp4" class="h-[95%] w-[95%] rounded-full">
+                    </label>
+                </div>
+                <input type="email" name="email" id="signupEmail" placeholder="Enter User Name" required
+                    class="h-[40px] border-[2px] border-black w-[80%] rounded-[10px] px-[5px] focus:outline-none"><br>
+                <input type="password" name="pass" id="signupPass" placeholder="Create your password" required
+                    class="h-[40px] border-[2px] border-black w-[80%] rounded-[10px] px-[5px] focus:outline-none"><br>
+                <div id="signup-message"
+                    class="h-[20px] mb-[5px] text-[16px] flex items-center justify-center text-black w-[100%]"></div>
+                <button id="signupSubmit"
+                    class="h-[40px] bg-black text-white text-[16px] w-auto mx-[10px] flex items-center rounded-[10px] px-[15px] focus:outline-none">
+                    Sign up
+                </button>
+            </form>
+            <pre class="h-auto w-[100%] mb-[15px] flex justify-center select-none">
+                <p>Already have an account</p> 
+                <span id="si" class="text-[blue] cursor-pointer"> Sign in</span>
+            </pre>
+        </div>
+    </div>
+
+    <!-- Right Side Main Content -->
+    <div id="right-side" class="h-full w-full bg-white z-1 relative overflow-hidden transition-all duration-300 ease-in-out">
+        <!-- Header -->
+        <header class="h-[180px] lg:h-[60px] w-full bg-white border-b border-black">
+            <nav class="h-full w-full flex items-center relative">
+                <div id="sidebar"
+                    class="h-[50px] w-[50px] rounded-full bg-gray-100 hover:bg-gray-200 ml-3 flex justify-center items-center cursor-pointer">
+                    <i class="fa-solid fa-bars text-[18px] text-black"></i>
+                </div>
+                <div id="profileIcon"
+                    class="h-[50px] w-[50px] rounded-full bg-gray-100 hover:bg-gray-200 absolute right-[10px] flex justify-center items-center cursor-pointer">
+                    <img src="{{ url_for('static', filename='profile.jpeg') }}" alt="profile"
+                        class="h-[90%] w-[90%] rounded-full">
+                </div>
+            </nav>
+        </header>
+
+        <!-- My Account Box -->
+        <div id="myAccountBox"
+            class="h-[90px] w-[280px] hidden transition-all duration-300 ease-in-out rounded-[20px] bg-white absolute top-[55px] right-[10px] z-2 p-[5px] border-[2px] border-gray-400 shadow-2xl">
+            <div id="account" class="h-[35px] w-[100%] border-b-[1px] border-gray-200 flex rounded-t-[15px] ">
+                <div id="circ" class="h-[30px] w-[30px] rounded-full text-gray-100 flex justify-center items-center">
+                    <i class="fa-solid fa-user text-[16px] text-gray-400"></i>
+                </div>
+                <div id="acc-name" class="h-auto w-[230px] text-[16px] text-gray-400 pl-[4px]">
+                    dhanurdhar1724@gmail.com
+                </div>
+            </div>
+            <div id="logout"
+                class="h-[40px] w-[100%] hover:bg-gray-200 cursor-pointer flex items-center text-[20px] text-gray-800 pl-[7px]">
+                <i class="fa-solid fa-right-from-bracket text-[20px] text-gray-800 mr-[5px] "></i>
+                <span>Logout</span>
+            </div>
+        </div>
+
+        <!-- Main Box -->
+        <main class="h-[calc(100%-360px)] lg:h-[calc(100%-170px)] w-full flex justify-center overflow-y-auto text-black">
+            <div id="main-box" class="scroll-smooth h-auto w-[94%] px-[3%] pt-[15px] text-[24px]">
+                <p class="text-gray-600">Welcome to ASK Assistant.</p>
+            </div>
+        </main>
+
+        <!-- Bottom Box -->
+        <div id="box" class="h-[180px] lg:h-[110px] w-full flex justify-center items-center relative">
+            <div id="searchBox"
+                class="h-[160px] lg:h-[100px] w-[90%] lg:w-[60%] bg-white rounded-[30px] border border-black shadow-2xl">
+                <div id="upperSearchBox" class="h-1/2 w-full rounded-t-[30px]">
+                    <form id="question-form" class="h-full w-full rounded-t-[30px] flex">
+                        <input type="text" placeholder="Ask anything you want" name="queryText"
+                            class="h-full w-[90%] rounded-tl-[29px] pl-4 text-[16px] text-black focus:outline-none">
+                        <div class="h-full w-[10%] rounded-tr-[19px] flex justify-center items-center">
+                            <button type="submit"
+                                class="h-[60px] w-[60px] lg:h-[40px] lg:w-[40px] bg-black rounded-full cursor-pointer flex justify-center items-center">
+                                <i class="fa-solid fa-arrow-up text-[30px] lg:text-[20px] text-white"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Upload Section -->
+                <div id="lowerSearchBox" class="h-1/2 w-full rounded-b-[20px] flex items-center relative">
+                    <div id="showupload"
+                        class="h-[45px] w-[45px] bg-gray-100 ml-[10px] rounded-full flex justify-center items-center cursor-pointer z-20 hover:bg-gray-200">
+                        <i class="fa-solid fa-plus text-[20px] text-black"></i>
+                    </div>
+                    <div id="uploadBox"
+                        class="h-auto absolute bottom-[60px] left-[10px] w-[250px] bg-white text-black p-4 rounded-xl shadow-lg hidden z-30">
+                        <h1 class="text-lg font-semibold mb-2">📘 ASK: Smart Assistant</h1>
+                        <form id="upload-form" class="flex flex-col space-y-2">
+                            <input type="file" id="pdf-file" accept=".pdf" class="text-sm">
+                            <button type="submit" class="bg-blue-500 text-white px-3 py-1 rounded">Upload PDF</button>
+                        </form>
+                        <div id="result" class="h-auto mt-2 hidden text-sm">
+                            <h3 class="text-green-600 font-semibold">✅ Uploaded!</h3>
+                            <p><strong>Filename:</strong> <span id="filename" class="h-auto"></span></p>
+                        </div>
+                    </div>
+                    <div class="h-[90%] w-auto px-[20px] hover:bg-gray-300 flex justify-center items-center text-[16px] bg-gray-200 ml-[10px] rounded-[20px] cursor-pointer"> Ask me</div>
+                    <div class="h-[90%] w-auto px-[20px] hover:bg-gray-300 flex justify-center items-center text-[16px] bg-gray-200 ml-[10px] rounded-[20px] cursor-pointer">I Challange you</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="/static/script.js"></script>
+</body>
+
+</html>
+
+
+
+
+
+
