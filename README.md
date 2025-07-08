@@ -1,55 +1,57 @@
 # smartAssistantforResearchSummarization
-**Smart Assistant for Research Summarization**
-An AI-powered assistant that understands, reasons, and interacts with documents (PDF/TXT). This assistant can:
-- Answer questions requiring comprehension & inference
-- Generate logic-based questions
-- Evaluate user responses with grounded justifications
-- Provide concise document summaries
+**Smart Assistant for Research Summarization**<br>
+An AI-powered assistant that understands, reasons, and interacts with documents (PDF/TXT). This assistant can:<br>
+- Answer questions requiring comprehension & inference<br>
+- Generate logic-based questions<br>
+- Evaluate user responses with grounded justifications<br>
+- Provide concise document summaries<br>
 
-**Features**
-✅ Document Upload (PDF/TXT)
-✅ Ask Anything mode (context-aware question answering)
-✅ Challenge Me mode (logic-based question generation + evaluation)
-✅ Auto Summary (≤ 150 words)
-✅ Justification from Document for every response
-✅ LLM + Embedding Based Retrieval
-✅ Local LLM support (e.g., Mistral via GGUF)
+**Features**<br>
+✅ Document Upload (PDF/TXT)<br>
+✅ Ask Anything mode (context-aware question answering)<br>
+✅ Challenge Me mode (logic-based question generation + evaluation)<br>
+✅ Auto Summary (≤ 150 words)<br>
+✅ Justification from Document for every response<br>
+✅ LLM + Embedding Based Retrieval<br>
+✅ Local LLM support (e.g., Mistral via GGUF)<br>
 
-**Setup Instructions**
-⚠️ Requirements: Python 3.10+, pip, and optionally a CUDA-compatible GPU
-1.Clone the Repository
-2.Install Dependencies
-  pip install -r requirements.txt
-3. Run the App
-  python app.py, first time it take time run as it download all required models from huggingface and set them in models folder of ripo.
-4.Usage
-  Upload a PDF or TXT file
-  Ask questions freely in Ask Anything
-  Try Challenge Me to test your understanding
-  View auto-generated document summary
+**Setup Instructions**<br>
+⚠️ Requirements: Python 3.10+, pip, and optionally a CUDA-compatible GPU<br>
+1.Clone the Repository<br>
+2.Install Dependencies<br>
+  pip install -r requirements.txt<br>
+3. Run the App <br>
+  python app.py, first time it take time run as it download all required models from huggingface and set them in models folder of ripo.<br>
+4.Usage<br>
+  Upload a PDF or TXT file<br>
+  Ask questions freely in Ask Anything<br>
+  Try Challenge Me to test your understanding<br>
+  View auto-generated document summary<br>
 
-**Project Structure**
-├── app.py                  # Main entry point (Flask or Gradio app)
-├── summerize.py           # Summarization logic
+**Project Structure**<br>
+.
+├── app.py                   # Main entry point (Flask or Gradio app) <br>
+├── summerizer.py           # Summarization logic<br>
 ├── challenge.py     # QA & evaluation logic
-├── quationing.py         # Mistral-powered retrieval QA
-├── models/                 # Folder for downloaded or local models
-│   └── All models will download here
-├── requirements.txt        # Python dependencies
-├── static/                 # Frontend styling assets, JS File
-└── README.md   
+├── quationing.py         # Mistral-powered retrieval QA<br>
+├── models/                 # Folder for downloaded or local models<br>
+│   └── All models download here<br>
+├── requirements.txt        # Python dependencies<br>
+├── static/                 # (optional) Frontend styling assets<br>
+└── README.md               # You're reading this!<br>
 
- **Models Used**
 
-| **Model Name**                                 | **Purpose**                                     | **Source**                              |
-|------------------------------------------------|-------------------------------------------------|-----------------------------------------|
-| `google/flan-t5-large`                         | Logic-based question generation + evaluation    | Hugging Face (Text2Text Generation)     |
-| `deepset/roberta-base-squad2`                  | Question Answering                              | Hugging Face (QA Pipeline)              |
-| `google/flan-t5-large`                         | Document summarization                          | Hugging Face (Summarization Pipeline)   |
-| `sentence-transformers/all-MiniLM-L6-v2`       | Embedding documents for retrieval               | Hugging Face (FAISS Embedding)          |
-| `mistral-7b-instruct-v0.2.Q2_K.gguf` (local)   | Retrieval-based QA using LangChain + Llama.cpp  | Local GGUF Model for LLM inference      |
+ **Models Used**<br>
 
-**System Architecture**
+| **Model Name**                                 | **Purpose**                                     | **Source**                              |<br>
+|------------------------------------------------|-------------------------------------------------|-----------------------------------------|<br>
+| `google/flan-t5-large`                         | Logic-based question generation + evaluation    | Hugging Face (Text2Text Generation)     |<br>
+| `deepset/roberta-base-squad2`                  | Question Answering                              | Hugging Face (QA Pipeline)              |<br>
+| `google/flan-t5-large`                         | Document summarization                          | Hugging Face (Summarization Pipeline)   |<br>
+| `sentence-transformers/all-MiniLM-L6-v2`       | Embedding documents for retrieval               | Hugging Face (FAISS Embedding)          |<br>
+| `mistral-7b-instruct-v0.2.Q2_K.gguf` (local)   | Retrieval-based QA using LangChain + Llama.cpp  | Local GGUF Model for LLM inference      |<br>
+
+**System Architecture**<br>
 This AI assistant follows a modular architecture with the following components:
 
 1. Document Ingestion
