@@ -1,4 +1,11 @@
 # smartAssistantforResearchSummarization
+
+## 🎥 Demo Video
+
+Watch the demo here:  
+[Google Drive Demo Video]([https://drive.google.com/file/d/FILE_ID/view?usp=sharing](https://drive.google.com/file/d/1EPKzc67tbi2FFhyBXJYSHWAOx9jSrfo-/view?usp=drive_link))
+
+
 **Smart Assistant for Research Summarization**<br>
 An AI-powered assistant that understands, reasons, and interacts with documents (PDF/TXT). This assistant can:<br>
 - Answer questions requiring comprehension & inference<br>
