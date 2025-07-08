@@ -1,0 +1,21 @@
+# Hugging Face Transformers
+transformers                # Required for Flan-T5, RoBERTa
+sentence-transformers       # Embedding model: all-MiniLM-L6-v2
+torch                       # Backend for transformers
+
+# Local LLM (GGUF) support
+llama-cpp-python            # For running Mistral-7B .gguf model
+
+# PDF Reader
+PyMuPDF                     # For loading PDF files
+
+# Vector store
+faiss-cpu                   # For storing and searching embeddings
+
+# LangChain (Document + Chain logic)
+langchain
+langchain-community
+
+# Web app
+flask                       # Backend server
+gradio                      # Frontend UI
