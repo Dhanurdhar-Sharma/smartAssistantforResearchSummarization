@@ -29,10 +29,10 @@ An AI-powered assistant that understands, reasons, and interacts with documents 
   View auto-generated document summary<br>
 
 **Project Structure**<br>
-.
+.<br>
 ├── app.py                   # Main entry point (Flask or Gradio app) <br>
 ├── summerizer.py           # Summarization logic<br>
-├── challenge.py     # QA & evaluation logic
+├── challenge.py     # QA & evaluation logic<br>
 ├── quationing.py         # Mistral-powered retrieval QA<br>
 ├── models/                 # Folder for downloaded or local models<br>
 │   └── All models download here<br>
@@ -52,40 +52,40 @@ An AI-powered assistant that understands, reasons, and interacts with documents 
 | `mistral-7b-instruct-v0.2.Q2_K.gguf` (local)   | Retrieval-based QA using LangChain + Llama.cpp  | Local GGUF Model for LLM inference      |<br>
 
 **System Architecture**<br>
-This AI assistant follows a modular architecture with the following components:
+This AI assistant follows a modular architecture with the following components:<br>
 
-1. Document Ingestion
-- Users can upload PDF or TXT files.
-- `PyMuPDF` is used to extract text from PDFs.
-- Large documents are chunked using `LangChain`'s `RecursiveCharacterTextSplitter`.
+1. Document Ingestion<br>
+- Users can upload PDF or TXT files.<br>
+- `PyMuPDF` is used to extract text from PDFs.<br>
+- Large documents are chunked using `LangChain`'s `RecursiveCharacterTextSplitter`.<br>
 
-2. Summarization
-- As soon as a document is uploaded, a concise summary (≤ 150 words) is generated using `google/flan-t5-large`.
-- The summary helps users get a quick overview of the content.
+2. Summarization<br>
+- As soon as a document is uploaded, a concise summary (≤ 150 words) is generated using `google/flan-t5-large`.<br>
+- The summary helps users get a quick overview of the content.<br>
 
-3. Interaction Modes
-a. Ask Anything
-- User asks any free-form question.
-- The assistant uses:
-  - `deepset/roberta-base-squad2` for question answering.
-  - The answer is grounded in the document.
-  - `SequenceMatcher` checks similarity if user input is evaluated.
+3. Interaction Modes<br>
+a. Ask Anything<br>
+- User asks any free-form question.<br>
+- The assistant uses:<br>
+  - `deepset/roberta-base-squad2` for question answering.<br>
+  - The answer is grounded in the document.<br>
+  - `SequenceMatcher` checks similarity if user input is evaluated.<br>
 
-b. Challenge Me
-- Automatically generates 2–3 logical/comprehension-based questions using `google/flan-t5-large`.
-- User answers them.
-- The system compares responses to model answers and gives feedback (correct/incorrect) with justification.
+b. Challenge Me<br>
+- Automatically generates 2–3 logical/comprehension-based questions using `google/flan-t5-large`.<br>
+- User answers them.<br>
+- The system compares responses to model answers and gives feedback (correct/incorrect) with justification.<br>
 
-4. Retrieval-Augmented QA (Advanced Mode)
-- For deeper semantic reasoning, a `RetrievalQA` chain is used:
-  - Embedding model: `sentence-transformers/all-MiniLM-L6-v2`
-  - Vector store: `FAISS`
-  - LLM: `mistral-7b-instruct-v0.2.Q2_K.gguf` loaded using `llama-cpp-python`
-- Enables local, private inference with long-context reasoning.
+4. Retrieval-Augmented QA (Advanced Mode)<br>
+- For deeper semantic reasoning, a `RetrievalQA` chain is used:<br>
+  - Embedding model: `sentence-transformers/all-MiniLM-L6-v2`<br>
+  - Vector store: `FAISS`<br>
+  - LLM: `mistral-7b-instruct-v0.2.Q2_K.gguf` loaded using `llama-cpp-python`<br>
+- Enables local, private inference with long-context reasoning.<br>
 
-5. Web Application
-- Built with `Flask`.
-- Allows document upload, free-form QA, and challenge interactions.
+5. Web Application<br>
+- Built with `Flask`.<br>
+- Allows document upload, free-form QA, and challenge interactions.<br>
 
 ---
 
